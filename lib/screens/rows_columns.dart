@@ -18,7 +18,14 @@ class RowsColumnsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children:[
               ElevatedButton(onPressed: ()=>{}, child: Text('Button 1')),
-              ElevatedButton(onPressed: ()=>{}, child: Text('Button 2')),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(onPressed: ()=>{}, child: Text('Button 2')),
+                  ElevatedButton(onPressed: ()=>{}, child: Text('Button 2')),
+                  ElevatedButton(onPressed: ()=>{}, child: Text('Button 2')),
+                ],
+              ),
               ElevatedButton(onPressed: ()=>{}, child: Text('Button 3')),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -27,7 +34,15 @@ class RowsColumnsScreen extends StatelessWidget {
                   IconButton(onPressed: ()=>{}, icon: Icon(Icons.not_accessible)),
                   IconButton(onPressed: ()=>{}, icon: Icon(Icons.accessible)),
                 ]
-              )
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children:[
+                  IconButton(onPressed: ()=>{}, icon: Icon(Icons.accessible_forward)),
+                  IconButton(onPressed: ()=>{}, icon: Icon(Icons.not_accessible)),
+                  IconButton(onPressed: ()=>{}, icon: Icon(Icons.accessible)),
+                ]
+              ),
             ],
           ),
         ),
