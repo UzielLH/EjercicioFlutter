@@ -14,11 +14,10 @@ class HomeScreen extends StatelessWidget {
           centerTitle: true
         ),
         body: ListView.separated(
-          itemBuilder: (context, index)=>ListTileOption(
-            title: options[index].title,
-            icon: options[index].icon,
-            route: options[index].route,
-          ),
+          itemBuilder: (context, index){
+            final option = options[index];
+            return ListTileOption(title: option.title, icon: option.icon, route: option.route);
+          },
           separatorBuilder: (context, index)=> Divider(),
           itemCount: options.length
         )
