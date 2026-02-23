@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app_flutter/widgets/appbar_widget.dart';
 
 class RowsColumnsScreen extends StatelessWidget {
   const RowsColumnsScreen({super.key});
@@ -6,12 +7,7 @@ class RowsColumnsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text('Columnas y Filas'),
-          backgroundColor: const Color.fromARGB(255, 144, 153, 205),
-          foregroundColor: const Color.fromARGB(255, 255, 255, 255),
-          centerTitle: true
-        ),
+        appBar: AppbarWidget(title:'Rows and Columns Page'),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

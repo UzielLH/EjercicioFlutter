@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app_flutter/widgets/appbar_widget.dart';
 
 class ContainersScreen extends StatelessWidget {
   const ContainersScreen({super.key});
@@ -6,12 +7,7 @@ class ContainersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text('Contenedores'),
-          backgroundColor: const Color.fromARGB(255, 144, 153, 205),
-          foregroundColor: const Color.fromARGB(255, 255, 255, 255),
-          centerTitle: true
-        ),
+        appBar: AppbarWidget(title:'Containers Page'),
         body: Column(
           children: [
             Container(
@@ -33,6 +29,20 @@ class ContainersScreen extends StatelessWidget {
                 containerIcon(),
                 containerIcon(),
               ],
+            ),
+            Container(
+              width: double.infinity,
+              height: 250,
+              clipBehavior: Clip.hardEdge,
+              margin: EdgeInsets.all(10),
+              decoration:BoxDecoration(
+                color: Colors.amber,
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+              ),
+              child: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1JA7wqx9iGMqN--pP2XrQllly1ExAQDOhKQ&s', 
+              fit: BoxFit.cover,
+              ),
+
             ),
           ],
         ),

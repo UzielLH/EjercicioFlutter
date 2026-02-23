@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app_flutter/routes/app_routes.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
+  HomeScreen({super.key});
+  final options = AppRoutes().options;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,34 +13,40 @@ class HomeScreen extends StatelessWidget {
           foregroundColor: const Color.fromARGB(255, 255, 255, 255),
           centerTitle: true
         ),
-        body: Column(
-          children:[
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Botones'),
-              trailing: Icon(Icons.arrow_forward_ios),
-              onTap:(){
-                Navigator.pushNamed(context, '/buttons');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.table_bar),
-              title: Text('Rows y Columns'),
-              trailing: Icon(Icons.arrow_forward_ios),
-              onTap:(){
-                Navigator.pushNamed(context, '/rows_columns');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.crop_square_outlined),
-              title: Text('Containers'),
-              trailing: Icon(Icons.arrow_forward_ios),
-              onTap:(){
-                Navigator.pushNamed(context, '/containers');
-              },
-            )
-          ],
-        ),
+        body: ListView.separated(
+          itemBuilder: (context, index)=>ListTileOption(
+            title: options[index].title,
+            icon: options[index].icon,
+            route: options[index].route,
+          ),
+          separatorBuilder: (context, index)=> Divider(),
+          itemCount: options.length
+        )
       );
+  }
+}
+
+class ListTileOption extends StatelessWidget {
+  final String title;
+  final Icon icon;
+  final String route;
+
+  const ListTileOption({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.route,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: icon,
+      title: Text(title),
+      trailing: Icon(Icons.arrow_forward_ios),
+      onTap:(){
+        Navigator.pushNamed(context, '/$route');
+      },
+    );
   }
 }
