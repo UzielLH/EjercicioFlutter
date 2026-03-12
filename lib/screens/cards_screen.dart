@@ -9,11 +9,167 @@ class CardsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppbarWidget(title: 'Cards Page'),
       body: SingleChildScrollView(
-        child: Column(children: [ChavosCard(), CustomCard(), ActividadCard()]),
+        child: Column(children: [
+          ChavosCard(), 
+          CustomCard(), 
+          ActividadCard(),
+          FavoriteCard(),
+          PlatoCard(),
+          ]),
       ),
     );
   }
 }
+
+class FavoriteCard extends StatefulWidget {
+  const FavoriteCard({
+    super.key,
+  });
+
+  @override
+  State<FavoriteCard> createState() => _FavoriteCardState();
+}
+
+class _FavoriteCardState extends State<FavoriteCard> {
+  bool isFavorite = false;
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.all(10),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusGeometry.all(Radius.circular(30)),
+      ),
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                ),
+                clipBehavior: Clip.hardEdge,
+                width: double.infinity,
+                child: Image.network(
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2EstMHBUF31T77ZkIYHtLVb127zxXB8uU_w&s',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Align(
+                alignment: AlignmentGeometry.topRight,
+                child: Container(
+                  padding: EdgeInsets.only(right: 15, top: 10),
+                  width: 50,
+                  height: 50,
+                  child: IconButton(
+                    iconSize:30,
+                    onPressed: ()=>{isFavorite= !isFavorite, setState(() {})},
+                    icon: Icon(
+                      isFavorite?Icons.favorite:
+                      Icons.favorite_border),
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Text('Chavos'),
+      ],)
+    );
+  }
+}
+
+
+class PlatoCard extends StatefulWidget {
+  const PlatoCard({
+    super.key,
+  });
+
+  @override
+  State<PlatoCard> createState() => _PlatoCardState();
+}
+
+class _PlatoCardState extends State<PlatoCard> {
+  var cantidad = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.all(10),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusGeometry.all(Radius.circular(30)),
+      ),
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                ),
+                clipBehavior: Clip.hardEdge,
+                width: double.infinity,
+                child: Image.network(
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIK0yRqnl2lnueGHH8qJUyNHHTLgSVGLF_HQ&s',
+                  width: 100,
+                  height: 300,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ],
+          ),
+          Align(
+            alignment: AlignmentGeometry.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                'Hamburguesas',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                  ),
+                  child: Text('Pedir', style: TextStyle(color: Colors.white)),
+                ),
+                Spacer(),
+                IconButton.filled(onPressed: () {
+                  setState(() {
+                    if (cantidad > 0) {
+                      cantidad--;
+                    }
+                  });
+                }, icon: Icon(Icons.remove)),
+                SizedBox(width: 5),
+                Text(
+                  '$cantidad'.toString(),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(width: 5),
+                IconButton.filled(onPressed: () {
+                  setState(() {
+                    cantidad++;
+                  });
+                }, icon: Icon(Icons.add)),          
+              ],
+            ),
+          ),
+      ],)
+    );
+  }
+}
+
 
 class ChavosCard extends StatelessWidget {
   const ChavosCard({super.key});
